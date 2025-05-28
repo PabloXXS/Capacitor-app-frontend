@@ -1,0 +1,20 @@
+# Сборка Angular приложения для продакшена
+ng build --configuration production
+
+# Копирование собранного приложения в iOS-проект (Capacitor)
+npx cap copy ios
+
+# Запуск Angular приложения для разработки на всех интерфейсах
+ng serve --host 0.0.0.0
+
+# Синхронизация изменений с iOS-проектом (Capacitor)
+npx cap sync ios
+
+# Открытие iOS-проекта в Xcode для сборки и запуска на эмуляторе/устройстве
+npx cap open ios
+
+ng serve --host 0.0.0.0
+npx cap sync ios
+npx cap open ios
+
+ipconfig getifaddr en0  

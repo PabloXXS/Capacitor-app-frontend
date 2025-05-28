@@ -29,12 +29,19 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/assets/",
+                "output": "/assets/"
               }
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "baseHref": "./",
+            "deployUrl": "/"
           },
           "configurations": {
             "production": {
