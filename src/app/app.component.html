@@ -1,19 +1,3 @@
 <ion-app>
-  <ion-tabs>
-    <ion-router-outlet></ion-router-outlet>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="scan" [routerLink]="['/scan']">
-        <ion-icon name="scan"></ion-icon>
-        <ion-label>Сканировать</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="history" [routerLink]="['/history']">
-        <ion-icon name="receipt"></ion-icon>
-        <ion-label>История</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="statistics" [routerLink]="['/statistics']">
-        <ion-icon name="stats-chart"></ion-icon>
-        <ion-label>Статистика</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
+  <ion-router-outlet></ion-router-outlet>
 </ion-app>

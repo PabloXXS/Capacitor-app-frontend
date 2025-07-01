@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Настройки</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-content">
+    <ion-list class="settings-list">
+      <ion-item>
+        <ion-label>
+          <h2>Уведомления</h2>
+          <p>Получать уведомления о новых чеках</p>
+        </ion-label>
+        <ion-toggle
+          [checked]="settings.notifications"
+          (ionChange)="onSettingChange('notifications', $event)"
+        >
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h2>Автосохранение</h2>
+          <p>Автоматически сохранять отсканированные чеки</p>
+        </ion-label>
+        <ion-toggle
+          [checked]="settings.autoSave"
+          (ionChange)="onSettingChange('autoSave', $event)"
+        >
+        </ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h2>Тёмная тема</h2>
+          <p>Использовать тёмную тему оформления</p>
+        </ion-label>
+        <ion-toggle
+          [checked]="settings.darkMode"
+          (ionChange)="onSettingChange('darkMode', $event)"
+        >
+        </ion-toggle>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

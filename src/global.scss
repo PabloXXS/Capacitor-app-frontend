@@ -1,0 +1,15 @@
+:root {
+  --ion-color-primary: #007bff;
+  --ion-color-primary-contrast: #fff;
+  --ion-background-color: #f8f9fa;
+  --ion-text-color: #222;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #181818;
+    --ion-text-color: #fff;
+    --ion-color-primary: #4e8cff;
+    --ion-color-primary-contrast: #fff;
+  }
+} 

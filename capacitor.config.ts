@@ -6,8 +6,8 @@ const config: CapacitorConfig = {
   webDir: 'dist/capacitor-app/browser',
   server: {
     url: 'http://192.168.1.103:4200',
-    cleartext: true
-  }
+    cleartext: true,
+  },
 };
 
 export default config;

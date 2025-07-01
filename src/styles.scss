@@ -12,15 +12,15 @@
 
 :root {
   /* Ionic Colors */
-  --ion-color-primary: #2E7D32;
-  --ion-color-primary-rgb: 46, 125, 50;
+  --ion-color-primary: #0a66c2;
+  --ion-color-primary-rgb: 10, 102, 194;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #286e2d;
-  --ion-color-primary-tint: #438a47;
+  --ion-color-primary-shade: #095bab;
+  --ion-color-primary-tint: #2375c8;
 
   /* Custom Colors */
-  --primary-color: #2E7D32;
+  --primary-color: #0a66c2;
   --secondary-color: #F5F5F5;
   --accent-color: #FFA000;
   --text-primary: #212121;
@@ -33,13 +33,31 @@
 
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
+
   /* Spacing */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
+
+  /* Page Layout Variables */
+  --page-padding-top: 16px;
+  --page-padding-bottom: 24px;
+  --page-padding-horizontal: 16px;
+  --content-max-width: 100%;
+  --header-height: 56px;
+  --tab-bar-height: 60px;
+
+  /* Safe Areas */
+  --ion-safe-area-top: env(safe-area-inset-top);
+  --ion-safe-area-bottom: env(safe-area-inset-bottom);
+  --ion-safe-area-left: env(safe-area-inset-left);
+  --ion-safe-area-right: env(safe-area-inset-right);
+
+  /* Calculated Safe Zones */
+  --safe-top: calc(var(--ion-safe-area-top) + var(--page-padding-top));
+  --safe-bottom: calc(var(--ion-safe-area-bottom) + var(--page-padding-bottom));
 
   /* Border Radius */
   --border-radius-sm: 4px;
@@ -56,12 +74,6 @@
   --transition-fast: 150ms ease;
   --transition-normal: 300ms ease;
   --transition-slow: 500ms ease;
-
-  /* Safe Areas */
-  --ion-safe-area-top: env(safe-area-inset-top);
-  --ion-safe-area-bottom: env(safe-area-inset-bottom);
-  --ion-safe-area-left: env(safe-area-inset-left);
-  --ion-safe-area-right: env(safe-area-inset-right);
 }
 
 /* Dark Theme */
@@ -105,19 +117,52 @@ h4 { font-size: 16px; }
 h5 { font-size: 14px; }
 h6 { font-size: 12px; }
 
+/* Page Layout Classes */
+.page-content {
+  padding: var(--page-padding-top) var(--page-padding-horizontal) var(--page-padding-bottom);
+  padding-top: calc(var(--header-height) + var(--page-padding-top));
+  min-height: calc(100vh - var(--tab-bar-height));
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.safe-content {
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+  padding-left: calc(var(--ion-safe-area-left) + var(--page-padding-horizontal));
+  padding-right: calc(var(--ion-safe-area-right) + var(--page-padding-horizontal));
+}
+
 /* Ionic Overrides */
 ion-content {
   --background: var(--background-light);
+  --padding-top: 0;
+  --padding-bottom: 0;
 }
 
-ion-toolbar {
+ion-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+ion-header ion-toolbar {
   --background: var(--background-light);
   --color: var(--text-primary);
+  --border-color: transparent;
+  --min-height: var(--header-height);
+  height: var(--header-height);
 }
 
 ion-item {
   --background: var(--background-light);
   --color: var(--text-primary);
+  --border-radius: var(--border-radius-lg);
+  --padding-start: var(--spacing-md);
+  --padding-end: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
 ion-card {
@@ -126,6 +171,22 @@ ion-card {
   margin: var(--spacing-md);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
+}
+
+ion-button {
+  --border-radius: var(--border-radius-lg);
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  font-weight: 600;
+  text-transform: none;
+}
+
+ion-tab-bar {
+  --background: var(--background-light);
+  --border: 1px solid rgba(0, 0, 0, 0.08);
+  height: var(--tab-bar-height);
+  padding-bottom: var(--ion-safe-area-bottom);
+  padding-top: var(--spacing-md);
 }
 
 /* Utility Classes */
@@ -144,6 +205,12 @@ ion-card {
 .mb-3 { margin-bottom: var(--spacing-md); }
 .mb-4 { margin-bottom: var(--spacing-lg); }
 .mb-5 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
 
 /* Animations */
 @keyframes fadeIn {
@@ -167,8 +234,9 @@ ion-card {
 /* Responsive Design */
 @media (max-width: 768px) {
   :root {
-    --spacing-lg: 20px;
-    --spacing-xl: 28px;
+    --page-padding-horizontal: 12px;
+    --page-padding-top: 12px;
+    --page-padding-bottom: 20px;
   }
 }
 
