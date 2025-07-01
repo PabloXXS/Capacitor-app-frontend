@@ -26,10 +26,10 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'settings',
+        path: 'profile',
         loadComponent: () =>
-          import('./components/settings/settings.component').then(
-            (m) => m.SettingsComponent
+          import('./components/profile/profile.component').then(
+            (m) => m.ProfileComponent
           ),
       },
     ],

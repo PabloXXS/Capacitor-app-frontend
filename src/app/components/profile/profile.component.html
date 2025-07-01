@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Профиль</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-content">
+    <!-- Профиль пользователя -->
+    <ion-card class="profile-card">
+      <ion-card-content>
+        <div class="profile-info">
+          <div class="avatar">
+            <ion-icon name="person"></ion-icon>
+          </div>
+          <div class="user-details">
+            <h2>{{ userProfile.name }}</h2>
+            <p>{{ userProfile.email }}</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Настройки -->
+    <div class="settings-section">
+      <div class="section-header">
+        <ion-icon name="settings"></ion-icon>
+        <h3>Настройки</h3>
+      </div>
+
+      <ion-list class="settings-list">
+        <ion-item>
+          <ion-icon name="notifications" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Уведомления</h2>
+            <p>Получать уведомления о новых чеках</p>
+          </ion-label>
+          <ion-toggle
+            [checked]="settings.notifications"
+            (ionChange)="onSettingChange('notifications', $event)"
+          >
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="save" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Автосохранение</h2>
+            <p>Автоматически сохранять отсканированные чеки</p>
+          </ion-label>
+          <ion-toggle
+            [checked]="settings.autoSave"
+            (ionChange)="onSettingChange('autoSave', $event)"
+          >
+          </ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="moon" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Тёмная тема</h2>
+            <p>Использовать тёмную тему оформления</p>
+          </ion-label>
+          <ion-toggle
+            [checked]="settings.darkMode"
+            (ionChange)="onSettingChange('darkMode', $event)"
+          >
+          </ion-toggle>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,122 @@
+ion-content {
+  --background: var(--background-light);
+}
+
+.profile-card {
+  margin: 0 0 var(--spacing-lg) 0;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-sm);
+
+  ion-card-content {
+    padding: var(--spacing-lg);
+  }
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      font-size: 32px;
+      color: white;
+    }
+  }
+
+  .user-details {
+    flex: 1;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0 0 var(--spacing-xs) 0;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+  }
+}
+
+.settings-section {
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+
+    ion-icon {
+      font-size: 20px;
+      color: var(--text-secondary);
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+  }
+}
+
+.settings-list {
+  background: transparent;
+  padding: 0;
+
+  ion-item {
+    --background: var(--background-light);
+    --border-radius: var(--border-radius-lg);
+    --padding-start: var(--spacing-md);
+    --padding-end: var(--spacing-md);
+    --min-height: 72px;
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    ion-icon[slot="start"] {
+      color: var(--text-secondary);
+      margin-right: var(--spacing-md);
+      font-size: 20px;
+    }
+
+    ion-label {
+      margin: var(--spacing-sm) 0;
+
+      h2 {
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      p {
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 1.4;
+        margin: 0;
+      }
+    }
+
+    ion-toggle {
+      --background: #e0e0e0;
+      --background-checked: var(--primary-color);
+      --handle-background: var(--background-light);
+      --handle-background-checked: var(--background-light);
+    }
+  }
+}

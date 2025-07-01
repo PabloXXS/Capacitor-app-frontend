@@ -8,12 +8,17 @@ import {
   IonItem,
   IonLabel,
   IonToggle,
+  IonIcon,
+  IonCard,
+  IonCardContent,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { person, settings, notifications, save, moon } from 'ionicons/icons';
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss'],
   standalone: true,
   imports: [
     IonContent,
@@ -24,16 +29,33 @@ import {
     IonItem,
     IonLabel,
     IonToggle,
+    IonIcon,
+    IonCard,
+    IonCardContent,
   ],
 })
-export class SettingsComponent implements OnInit {
+export class ProfileComponent implements OnInit {
+  userProfile = {
+    name: 'Пользователь',
+    email: 'user@example.com',
+    avatar: '',
+  };
+
   settings = {
     notifications: true,
     autoSave: false,
     darkMode: false,
   };
 
-  constructor() {}
+  constructor() {
+    addIcons({
+      person,
+      settings,
+      notifications,
+      save,
+      moon,
+    });
+  }
 
   ngOnInit() {}
 
