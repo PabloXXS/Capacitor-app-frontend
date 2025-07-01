@@ -16,7 +16,10 @@ ion-content {
   align-items: center;
   justify-content: center;
   text-align: center;
-  height: calc(100vh - var(--header-height) - var(--tab-bar-height) - var(--page-padding-top) - var(--page-padding-bottom) - var(--page-padding-top));
+  height: calc(100vh - var(--header-height) - var(--tab-bar-height) - var(--ion-safe-area-top) - var(--ion-safe-area-bottom));
+  padding: var(--page-padding-top) var(--page-padding-horizontal) var(--page-padding-bottom);
+  padding-top: calc(var(--header-height) + var(--page-padding-top) + var(--ion-safe-area-top));
+  padding-bottom: calc(var(--tab-bar-height) + var(--page-padding-bottom) + var(--ion-safe-area-bottom));
 
   .empty-icon {
     font-size: 64px;

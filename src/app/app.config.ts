@@ -7,7 +7,10 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-     provideRouter(routes),
-      provideIonicAngular()
-    ]
+    provideRouter(routes),
+    provideIonicAngular({
+      mode: 'ios',
+      innerHTMLTemplatesEnabled: true,
+    }),
+  ],
 };

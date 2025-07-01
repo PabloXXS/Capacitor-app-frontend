@@ -43,7 +43,7 @@
 
   /* Page Layout Variables */
   --page-padding-top: 16px;
-  --page-padding-bottom: 24px;
+  --page-padding-bottom: 32px;
   --page-padding-horizontal: 16px;
   --content-max-width: 100%;
   --header-height: 56px;
@@ -84,6 +84,21 @@
     --text-primary: #FFFFFF;
     --text-secondary: #B0B0B0;
   }
+
+  ion-header {
+    --background: var(--background-light);
+    --color: var(--text-primary);
+  }
+
+  ion-header ion-toolbar {
+    --background: var(--background-light);
+    --color: var(--text-primary);
+    --border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  ion-header ion-title {
+    --color: var(--text-primary);
+  }
 }
 
 /* Base Styles */
@@ -120,8 +135,8 @@ h6 { font-size: 12px; }
 /* Page Layout Classes */
 .page-content {
   padding: var(--page-padding-top) var(--page-padding-horizontal) var(--page-padding-bottom);
-  padding-top: calc(var(--header-height) + var(--page-padding-top));
-  min-height: calc(100vh - var(--tab-bar-height));
+  padding-top: calc(var(--header-height) + var(--page-padding-top) + var(--ion-safe-area-top));
+  padding-bottom: calc(var(--tab-bar-height) + var(--page-padding-bottom) + var(--ion-safe-area-bottom));
   max-width: var(--content-max-width);
   margin: 0 auto;
 }
@@ -138,22 +153,27 @@ ion-content {
   --background: var(--background-light);
   --padding-top: 0;
   --padding-bottom: 0;
+  --overflow: auto;
+  height: 100vh;
+  --keyboard-offset: 0px;
 }
 
 ion-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
+  --background: var(--background-light);
+  --color: var(--text-primary);
 }
 
 ion-header ion-toolbar {
   --background: var(--background-light);
   --color: var(--text-primary);
-  --border-color: transparent;
+  --border-color: rgba(0, 0, 0, 0.08);
   --min-height: var(--header-height);
-  height: var(--header-height);
+}
+
+ion-header ion-title {
+  --color: var(--text-primary);
+  font-size: 18px;
+  font-weight: 600;
 }
 
 ion-item {
@@ -182,11 +202,49 @@ ion-button {
 }
 
 ion-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   --background: var(--background-light);
   --border: 1px solid rgba(0, 0, 0, 0.08);
-  height: var(--tab-bar-height);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  height: calc(var(--tab-bar-height) + var(--ion-safe-area-bottom));
+  padding-top: var(--spacing-sm);
   padding-bottom: var(--ion-safe-area-bottom);
-  padding-top: var(--spacing-md);
+}
+
+/* Modal and Keyboard Support */
+ion-modal {
+  --border-radius: 16px 16px 0 0;
+  --box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+  --backdrop-opacity: 0.4;
+
+  /* Sheet modal стили */
+  &.modal-sheet {
+    --height: auto;
+    --border-radius: 16px 16px 0 0;
+    --box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Handle для sheet modal */
+  .modal-handle {
+    width: 36px;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    margin: 8px auto 16px;
+  }
+}
+
+/* Темная тема для модальных окон */
+@media (prefers-color-scheme: dark) {
+  ion-modal {
+    .modal-handle {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
 }
 
 /* Utility Classes */
@@ -236,7 +294,7 @@ ion-tab-bar {
   :root {
     --page-padding-horizontal: 12px;
     --page-padding-top: 12px;
-    --page-padding-bottom: 20px;
+    --page-padding-bottom: 28px;
   }
 }
 
