@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+
+You are an expert in Ionic and Capacitor, working with TypeScript and Angular to build apps for mobile and web. The following are best practices and rules to follow when developing such projects.
+
+Project Structure and File Naming
+• Organize by features: Structure your project into feature-based directories (e.g., services/, components/, pages/, pipes/). This makes the app more scalable and maintainable as it grows.
+• Environment-specific configs: Use Angular’s environment files for different stages (development, staging, production) to manage API endpoints and keys. This allows easy switching of configurations without altering code.
+• Build scripts and CI/CD: Create npm scripts for common tasks (build, lint, test, deploy) and integrate them into a CI/CD pipeline. Automate building of web assets and running ionic capacitor sync so native Android/iOS projects are updated in CI. This ensures consistent builds and reduces manual error.
+• Staging and canary deployments: Set up separate staging environments (and canary releases if needed) to test features in a production-like setting before full release. Use environment flags or config files to toggle beta features without affecting stable users.
+
+Project Structure and Organization
+• Descriptive naming: Use clear, descriptive names for files, variables, and functions (e.g., getUsers(), calculateTotalPrice()). Good naming makes the code self-documenting and easier to navigate.
+• Small, focused classes: Keep components and services focused on a single purpose. If a class or component grows too large or does too many things, refactor into smaller pieces.
+• Avoid global state: Encapsulate state within services or use state management libraries rather than using global variables. This improves testability and prevents unexpected side-effects.
+• Module-based routing: Manage routing through dedicated Angular routing modules. Define a clear route hierarchy and lazy-load feature modules to optimize startup time.
+• Modern TypeScript/Angular practices: Use the latest ES6+ and Angular features (e.g., async/await, RxJS best practices, Angular’s standalone components if applicable) for cleaner and more efficient code. Follow Angular style guides for consistency in structure.
+• Centralized services: Handle all API calls and error handling in Angular services. This way, components remain UI-focused and you have a single place to manage data fetching and network error logic. The same goes for device storage: use a single service for reads/writes to Storage or filesystem, and keep all storage keys in one constants file for easy reference.
+• Capacitor native project management: Remember that adding Capacitor platforms (Android/iOS) creates native projects in your repo (e.g., an android/ and ios/ folder). Treat these as part of your source—commit them to version control and keep them in sync with your web code (run ionic capacitor sync after changing plugins or config).
+
+Naming Conventions
+• camelCase for variables/functions: Use camelCase for function and variable names (e.g., shouldLoadData, totalPrice).
+• PascalCase for classes: Use PascalCase for classes and Angular components (e.g., UserService, OrderListComponent).
+• kebab-case for files: Name files and selectors in kebab-case (dash-separated) for consistency (e.g., user-service.ts, home-page.component.ts).
+• Boolean prefixes: For booleans, use prefixes like is, has, should to make their purpose clear (e.g., isLoading, hasPermission).
+• UPPERCASE for constants: Use all caps for constants and environment variables (e.g., API_URL, APP_VERSION). This differentiates them from mutable variables.
+
+Dependencies and Frameworks
+• Minimal external libraries: Avoid adding heavy external libraries unless absolutely necessary. Leverage Ionic and Angular’s capabilities first. Each dependency should be evaluated for maintenance, security, and compatibility.
+• Use Capacitor plugins for native features: Prefer Capacitor’s official plugins (or well-maintained community plugins) to access native device APIs (camera, geolocation, etc.). These come with web fallbacks or will safely no-op in the browser, ensuring the app still runs on web. If a plugin isn’t available, consider writing a custom Capacitor plugin rather than using older Cordova plugins.
+• Cross-platform compatibility: Use Ionic’s native-style components and Capacitor plugins for functionality that works on both mobile and web. This ensures a smooth user experience across platforms. If a certain native feature has no web equivalent, implement proper fallbacks or conditional code (e.g., show an explanation or disable unsupported features in web/PWA builds).
+• Centralize native calls: If using any native-specific code (e.g., a custom Capacitor plugin or direct calls to the Capacitor APIs), wrap these in a service. Do not scatter native calls throughout components. This way, platform-specific logic is centralized, making it easier to maintain and to provide web fallbacks or mocks in one place.
+• Check plugin criteria: Before adding a new Capacitor plugin or third-party library, check for active maintenance, platform support (iOS/Android/Web), documentation quality, and security best practices. A well-chosen dependency prevents future headaches with upgrades or platform issues.
+
+UI and Styles
+• Prefer Ionic UI components: Utilize Ionic’s rich library of components (buttons, menus, tabs, etc.) for a consistent look-and-feel across iOS, Android, and web. Ionic components automatically adapt to each platform’s design guidelines, which improves user experience without extra work.
+• Reusable components: Create reusable components for complex or repeating UI elements. If a certain UI pattern appears in multiple places, abstract it into a shared component. This promotes code reuse and consistency.
+• Use SCSS and theming: Use SCSS (Sass) for styling, which Ionic supports out of the box. Centralize your app’s theme by defining colors, fonts, and common styles in the variables.scss (and other theme files) so you can tweak branding in one place. This makes it easy to maintain a consistent design and update it globally.
+• Responsive design: Make use of Ionic’s grid system and utility classes to ensure your app is responsive on various screen sizes. Test on different device form factors (small phone, large tablet, desktop web) and utilize media queries or Ionic’s built-in responsiveness features to adjust layouts accordingly.
+• Global styles carefully: Limit the use of global CSS to avoid unintended side effects. Scope styles to components or use Ionic’s CSS variables for theming. Keep the global stylesheet minimal, primarily for base font and body styling, since Ionic components come with their own styles.

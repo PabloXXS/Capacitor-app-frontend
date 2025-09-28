@@ -6,66 +6,78 @@
 
 <ion-content [fullscreen]="true">
   <div class="page-content">
-    <!-- Профиль пользователя -->
-    <ion-card class="profile-card">
-      <ion-card-content>
-        <div class="profile-info">
-          <div class="avatar">
-            <ion-icon name="person"></ion-icon>
+    <!-- Верхняя часть профиля -->
+    <div class="profile-header">
+      <ion-avatar class="profile-avatar">
+        <ion-icon name="person"></ion-icon>
+      </ion-avatar>
+      <h1 class="profile-name">{{ userProfile.displayName }}</h1>
+      <p class="profile-email">{{ userProfile.email }}</p>
+    </div>
+
+    <!-- Информация профиля -->
+    <div class="profile-section">
+      <ion-list class="profile-list">
+        <ion-item button (click)="editProfile('fullName')">
+          <div class="item-content">
+            <p class="item-label">имя</p>
+            <h3 class="item-value">{{ userProfile.fullName }}</h3>
           </div>
-          <div class="user-details">
-            <h2>{{ userProfile.name }}</h2>
-            <p>{{ userProfile.email }}</p>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+
+        <ion-item button (click)="editProfile('publicNickname')">
+          <div class="item-content">
+            <p class="item-label">публичный никнейм</p>
+            <h3 class="item-value">{{ userProfile.publicNickname }}</h3>
           </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+
+        <ion-item button (click)="editProfile('email')">
+          <div class="item-content">
+            <p class="item-label">Email</p>
+            <h3 class="item-value">{{ userProfile.email }}</h3>
+          </div>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </div>
 
     <!-- Настройки -->
     <div class="settings-section">
-      <div class="section-header">
-        <ion-icon name="settings"></ion-icon>
-        <h3>Настройки</h3>
-      </div>
+      <h2 class="section-title">настройки</h2>
 
       <ion-list class="settings-list">
         <ion-item>
-          <ion-icon name="notifications" slot="start"></ion-icon>
-          <ion-label>
-            <h2>Уведомления</h2>
-            <p>Получать уведомления о новых чеках</p>
-          </ion-label>
+          <div class="item-content">
+            <h3 class="item-value">уведомления</h3>
+          </div>
           <ion-toggle
             [checked]="settings.notifications"
-            (ionChange)="onSettingChange('notifications', $event)"
+            (ionChange)="onNotificationToggle($event)"
           >
           </ion-toggle>
         </ion-item>
 
-        <ion-item>
-          <ion-icon name="save" slot="start"></ion-icon>
-          <ion-label>
-            <h2>Автосохранение</h2>
-            <p>Автоматически сохранять отсканированные чеки</p>
-          </ion-label>
-          <ion-toggle
-            [checked]="settings.autoSave"
-            (ionChange)="onSettingChange('autoSave', $event)"
-          >
-          </ion-toggle>
+        <ion-item button (click)="openLanguageSettings()">
+          <div class="item-content">
+            <h3 class="item-value">Язык</h3>
+          </div>
+          <div class="item-end">
+            <span class="item-detail">{{ settings.language }}</span>
+            <ion-icon name="chevron-forward"></ion-icon>
+          </div>
         </ion-item>
 
-        <ion-item>
-          <ion-icon name="moon" slot="start"></ion-icon>
-          <ion-label>
-            <h2>Тёмная тема</h2>
-            <p>Использовать тёмную тему оформления</p>
-          </ion-label>
-          <ion-toggle
-            [checked]="settings.darkMode"
-            (ionChange)="onSettingChange('darkMode', $event)"
-          >
-          </ion-toggle>
+        <ion-item button (click)="openThemeSettings()">
+          <div class="item-content">
+            <h3 class="item-value">темная тема</h3>
+          </div>
+          <div class="item-end">
+            <span class="item-detail">{{ settings.darkMode }}</span>
+            <ion-icon name="chevron-forward"></ion-icon>
+          </div>
         </ion-item>
       </ion-list>
     </div>

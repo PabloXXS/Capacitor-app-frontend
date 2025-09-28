@@ -1,0 +1,92 @@
+:host {
+  --min-height: 300px;
+  --height: auto;
+}
+
+ion-header {
+  --background: var(--background-light);
+}
+
+ion-content {
+  --background: var(--background-light);
+  text-align: center;
+  --min-height: 250px;
+}
+
+ion-toolbar {
+  --background: var(--background-light);
+  --color: var(--text-primary);
+  --border-color: rgba(0, 0, 0, 0.12);
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+ion-button {
+  --color: var(--primary-color);
+  font-size: 16px;
+
+  &.save-button {
+    font-weight: 600;
+  }
+
+  &[disabled] {
+    --color: var(--text-secondary);
+  }
+}
+
+.field-icon {
+  margin: var(--spacing-lg) auto var(--spacing-md);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 32px;
+    color: white;
+  }
+}
+
+.field-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.edit-input {
+  --background: rgba(118, 118, 128, 0.12);
+  --color: var(--text-primary);
+  --placeholder-color: var(--text-secondary);
+  --padding-start: var(--spacing-md);
+  --padding-end: var(--spacing-md);
+  --border-radius: var(--border-radius-lg);
+  --min-height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  margin-top: var(--spacing-lg);
+}
+
+// Темная тема
+@media (prefers-color-scheme: dark) {
+  ion-header {
+    --background: var(--background-light);
+  }
+
+  ion-toolbar {
+    --background: var(--background-light);
+    --border-color: rgba(255, 255, 255, 0.12);
+    --color: var(--text-primary);
+  }
+
+  .edit-input {
+    --background: rgba(118, 118, 128, 0.24);
+  }
+}

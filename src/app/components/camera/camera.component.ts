@@ -6,9 +6,11 @@ import {
   IonToolbar,
   IonButton,
   IonIcon,
+  ToastController,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { camera } from 'ionicons/icons';
+import { ReceiptService, Receipt } from '../../services/receipt.service';
 
 @Component({
   selector: 'app-camera',
@@ -18,7 +20,10 @@ import { camera } from 'ionicons/icons';
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonIcon],
 })
 export class CameraComponent implements OnInit {
-  constructor() {
+  constructor(
+    private receiptService: ReceiptService,
+    private toastController: ToastController
+  ) {
     addIcons({
       camera,
     });
@@ -26,8 +31,32 @@ export class CameraComponent implements OnInit {
 
   ngOnInit() {}
 
-  openCamera() {
-    // Логика для открытия камеры будет здесь
-    console.log('Открытие камеры для сканирования чека');
+  async openCamera() {
+    try {
+      // TODO: Implement actual camera functionality with Capacitor Camera plugin
+      // For now, create a mock receipt
+      const mockReceipt: Receipt = {
+        id: Date.now().toString(),
+        title: 'Сканированный чек',
+        summ: Math.floor(Math.random() * 3000) + 200,
+        image: 'assets/sample-check.png',
+        date: new Date(),
+      };
+
+      this.receiptService.addReceipt(mockReceipt);
+      await this.presentToast('Чек успешно добавлен!');
+    } catch (error) {
+      console.error('Error opening camera:', error);
+      await this.presentToast('Ошибка при сканировании чека');
+    }
+  }
+
+  private async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

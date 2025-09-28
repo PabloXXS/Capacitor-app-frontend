@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="cancel()">Отменить</ion-button>
+    </ion-buttons>
+    <ion-title>{{ data.title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        fill="clear"
+        (click)="save()"
+        [disabled]="!editedValue.trim()"
+        class="save-button"
+      >
+        Сохранить
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="field-icon">
+    <ion-icon [name]="data.icon"></ion-icon>
+  </div>
+
+  <h2 class="field-title">{{ data.title }}</h2>
+
+  <ion-input
+    [(ngModel)]="editedValue"
+    [placeholder]="data.placeholder"
+    class="edit-input"
+    autocomplete="off"
+    autocorrect="off"
+    spellcheck="false"
+    enterkeyhint="done"
+    (keyup.enter)="save()"
+    #inputField
+  >
+  </ion-input>
+</ion-content>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import {
   IonTabs,
   IonTabBar,
@@ -14,7 +15,7 @@ import { receipt, camera, person } from 'ionicons/icons';
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss'],
   standalone: true,
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, RouterOutlet],
 })
 export class TabsComponent {
   constructor() {

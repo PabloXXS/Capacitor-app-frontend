@@ -8,7 +8,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'camera',
+        redirectTo: 'receipts',
         pathMatch: 'full',
       },
       {

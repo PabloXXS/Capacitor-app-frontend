@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-beasties-container>
+  <head>
+    <meta charset="utf-8">
+    <title>CapacitorApp</title>
+    <base href="./">
+
+    <!-- iOS Safe Area Viewport Configuration -->
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- iOS Status Bar and Theme -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CapacitorApp">
+
+    <!-- iOS Home Screen Icon -->
+    <meta name="apple-touch-fullscreen" content="yes">
+
+    <!-- Theme Color for Safari -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-navbutton-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Prevent iOS Safari from auto-zooming -->
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- iOS Safe Area CSS Variables -->
+    <style>
+      :root {
+        /* iOS Safe Area Support */
+        --sat: env(safe-area-inset-top);
+        --sab: env(safe-area-inset-bottom);
+        --sal: env(safe-area-inset-left);
+        --sar: env(safe-area-inset-right);
+
+        /* Keyboard Support */
+        --keyboard-height: env(keyboard-inset-height, 0px);
+
+        /* Prevent FOUC */
+        --initial-safe-area-top: 44px;
+        --initial-safe-area-bottom: 34px;
+        --initial-safe-area-left: 0px;
+        --initial-safe-area-right: 0px;
+      }
+
+      /* Prevent FOUC and ensure proper iOS rendering */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+
+        /* iOS Specific */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-text-size-adjust: none;
+
+        /* Safe Area Support */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+
+      /* iOS Status Bar Fix */
+      @supports (padding: max(0px)) {
+        html,
+        body {
+          padding-top: max(
+            env(safe-area-inset-top),
+            var(--initial-safe-area-top)
+          );
+          padding-bottom: max(
+            env(safe-area-inset-bottom),
+            var(--initial-safe-area-bottom)
+          );
+          padding-left: max(
+            env(safe-area-inset-left),
+            var(--initial-safe-area-left)
+          );
+          padding-right: max(
+            env(safe-area-inset-right),
+            var(--initial-safe-area-right)
+          );
+        }
+      }
+
+      /* Landscape Orientation Fix */
+      @media (orientation: landscape) {
+        :root {
+          --initial-safe-area-top: 0px;
+          --initial-safe-area-bottom: 21px;
+          --initial-safe-area-left: 44px;
+          --initial-safe-area-right: 44px;
+        }
+      }
+
+      /* Dark Theme Support */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --theme-color: #121212;
+        }
+      }
+
+      /* Prevent scrolling issues on iOS */
+      body {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      /* App Container */
+      app-root {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        /* Safe Area Integration */
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+
+        /* Box sizing */
+        box-sizing: border-box;
+      }
+    </style>
+  <style>:root{--ion-color-primary:#0054e9;--ion-color-primary-rgb:0, 84, 233;--ion-color-primary-contrast:#fff;--ion-color-primary-contrast-rgb:255, 255, 255;--ion-color-primary-shade:#004acd;--ion-color-primary-tint:#1a65eb;--ion-color-secondary:#0163aa;--ion-color-secondary-rgb:1, 99, 170;--ion-color-secondary-contrast:#fff;--ion-color-secondary-contrast-rgb:255, 255, 255;--ion-color-secondary-shade:#015796;--ion-color-secondary-tint:#1a73b3;--ion-color-tertiary:#6030ff;--ion-color-tertiary-rgb:96, 48, 255;--ion-color-tertiary-contrast:#fff;--ion-color-tertiary-contrast-rgb:255, 255, 255;--ion-color-tertiary-shade:#542ae0;--ion-color-tertiary-tint:#7045ff;--ion-color-success:#2dd55b;--ion-color-success-rgb:45, 213, 91;--ion-color-success-contrast:#000;--ion-color-success-contrast-rgb:0, 0, 0;--ion-color-success-shade:#28bb50;--ion-color-success-tint:#42d96b;--ion-color-warning:#ffc409;--ion-color-warning-rgb:255, 196, 9;--ion-color-warning-contrast:#000;--ion-color-warning-contrast-rgb:0, 0, 0;--ion-color-warning-shade:#e0ac08;--ion-color-warning-tint:#ffca22;--ion-color-danger:#c5000f;--ion-color-danger-rgb:197, 0, 15;--ion-color-danger-contrast:#fff;--ion-color-danger-contrast-rgb:255, 255, 255;--ion-color-danger-shade:#ad000d;--ion-color-danger-tint:#cb1a27;--ion-color-light:#f4f5f8;--ion-color-light-rgb:244, 245, 248;--ion-color-light-contrast:#000;--ion-color-light-contrast-rgb:0, 0, 0;--ion-color-light-shade:#d7d8da;--ion-color-light-tint:#f5f6f9;--ion-color-medium:#636469;--ion-color-medium-rgb:99, 100, 105;--ion-color-medium-contrast:#fff;--ion-color-medium-contrast-rgb:255, 255, 255;--ion-color-medium-shade:#57585c;--ion-color-medium-tint:#737478;--ion-color-dark:#222428;--ion-color-dark-rgb:34, 36, 40;--ion-color-dark-contrast:#fff;--ion-color-dark-contrast-rgb:255, 255, 255;--ion-color-dark-shade:#1e2023;--ion-color-dark-tint:#383a3e}html{--ion-dynamic-font:-apple-system-body;--ion-font-family:var(--ion-default-font)}body{background:var(--ion-background-color);color:var(--ion-text-color)}@supports (padding-top: 20px){html{--ion-safe-area-top:var(--ion-statusbar-padding)}}@supports (padding-top: env(safe-area-inset-top)){html{--ion-safe-area-top:env(safe-area-inset-top);--ion-safe-area-bottom:env(safe-area-inset-bottom);--ion-safe-area-left:env(safe-area-inset-left);--ion-safe-area-right:env(safe-area-inset-right)}}*{box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}html{width:100%;height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}html:not(.hydrated) body{display:none}body{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;margin:0;padding:0;position:fixed;width:100%;max-width:100%;height:100%;max-height:100%;transform:translateZ(0);text-rendering:optimizeLegibility;overflow:hidden;touch-action:manipulation;-webkit-user-drag:none;-ms-content-zooming:none;word-wrap:break-word;overscroll-behavior-y:none;-webkit-text-size-adjust:none;text-size-adjust:none}html{font-family:var(--ion-font-family)}@supports (-webkit-touch-callout: none){html{font:var(--ion-dynamic-font, 16px var(--ion-font-family))}}:root{--ion-color-primary:#0a66c2;--ion-color-primary-rgb:10, 102, 194;--ion-color-primary-contrast:#ffffff;--ion-color-primary-contrast-rgb:255, 255, 255;--ion-color-primary-shade:#095bab;--ion-color-primary-tint:#2375c8;--primary-color:#0a66c2;--secondary-color:#F5F5F5;--accent-color:#FFA000;--text-primary:#212121;--text-secondary:#757575;--background-light:#FFFFFF;--background-dark:#121212;--error-color:#D32F2F;--success-color:#388E3C;--warning-color:#F57C00;--font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;--spacing-xs:4px;--spacing-sm:8px;--spacing-md:16px;--spacing-lg:24px;--spacing-xl:32px;--page-padding-top:calc(16px + var(--safe-area-top));--page-padding-bottom:calc(32px + var(--safe-area-bottom));--page-padding-horizontal:calc(16px + var(--safe-area-left));--content-max-width:calc(100% - var(--safe-area-left) - var(--safe-area-right));--header-height:calc(56px + var(--safe-area-top));--tab-bar-height:calc(60px + var(--safe-area-bottom));--border-radius-sm:4px;--border-radius-md:8px;--border-radius-lg:12px;--border-radius-xl:16px;--shadow-sm:0 2px 4px rgba(0, 0, 0, .1);--shadow-md:0 4px 8px rgba(0, 0, 0, .1);--shadow-lg:0 8px 16px rgba(0, 0, 0, .1);--transition-fast:.15s ease;--transition-normal:.3s ease;--transition-slow:.5s ease}@media (prefers-color-scheme: dark){:root{--background-light:#121212;--background-dark:#FFFFFF;--text-primary:#FFFFFF;--text-secondary:#B0B0B0}}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--font-family);font-size:16px;line-height:1.5;color:var(--text-primary);background-color:var(--background-light);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}@media (orientation: landscape){:root{--safe-area-top:max(env(safe-area-inset-top), 0px);--safe-area-bottom:max(env(safe-area-inset-bottom), 0px);--safe-area-left:max(env(safe-area-inset-left), 44px);--safe-area-right:max(env(safe-area-inset-right), 44px)}}</style><link rel="stylesheet" href="/styles-S2A5XSZX.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/styles-S2A5XSZX.css"></noscript></head>
+  <body>
+    <app-root></app-root>
+  <link rel="modulepreload" href="/chunk-HHKLK3KV.js"><link rel="modulepreload" href="/chunk-RW6J5RA3.js"><link rel="modulepreload" href="/chunk-UXGGMQD4.js"><link rel="modulepreload" href="/chunk-WF3I4O5X.js"><link rel="modulepreload" href="/chunk-HC6MZPB3.js"><link rel="modulepreload" href="/chunk-TF3W7USQ.js"><link rel="modulepreload" href="/chunk-FKDH2XUK.js"><link rel="modulepreload" href="/chunk-BJZM5LY7.js"><link rel="modulepreload" href="/chunk-7VYJQZY2.js"><link rel="modulepreload" href="/chunk-XPCQ3BOX.js"><script src="/polyfills-FFHMD2TL.js" type="module"></script><script src="/main-PT3ICHBX.js" type="module"></script></body>
+</html>

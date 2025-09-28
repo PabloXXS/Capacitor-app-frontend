@@ -13,8 +13,4 @@ npx cap sync ios
 # Открытие iOS-проекта в Xcode для сборки и запуска на эмуляторе/устройстве
 npx cap open ios
 
-ng serve --host 0.0.0.0
-npx cap sync ios
-npx cap open ios
-
-ipconfig getifaddr en0  
+ipconfig getifaddr en0

@@ -1,0 +1,53 @@
+{
+	"appId": "com.example.capacitorapp",
+	"appName": "CapacitorApp",
+	"webDir": "dist/capacitor-app/browser",
+	"server": {
+		"url": "http://192.168.1.103:4200",
+		"cleartext": true
+	},
+	"plugins": {
+		"Keyboard": {
+			"resize": "ionic",
+			"style": "dark",
+			"resizeOnFullScreen": true
+		},
+		"StatusBar": {
+			"style": "dark",
+			"backgroundColor": "#ffffff",
+			"overlaysWebView": false
+		},
+		"SafeArea": {
+			"enabled": true,
+			"customColorsForSystemBars": true,
+			"statusBarColor": "#ffffff",
+			"statusBarStyle": "dark",
+			"navigationBarColor": "#ffffff",
+			"navigationBarStyle": "dark"
+		}
+	},
+	"ios": {
+		"contentInset": "automatic",
+		"scrollEnabled": true,
+		"backgroundColor": "#ffffff",
+		"allowsLinkPreview": false,
+		"handleApplicationNotifications": false,
+		"preferredContentMode": "mobile",
+		"limitsNavigationsToAppBoundDomains": false,
+		"scheme": "capacitor",
+		"path": ""
+	},
+	"android": {
+		"allowMixedContent": true,
+		"captureInput": true,
+		"webContentsDebuggingEnabled": true,
+		"backgroundColor": "#ffffff",
+		"loggingBehavior": "none"
+	},
+	"packageClassList": [
+		"ActionSheetPlugin",
+		"CAPCameraPlugin",
+		"GeolocationPlugin",
+		"PreferencesPlugin"
+	]
+}

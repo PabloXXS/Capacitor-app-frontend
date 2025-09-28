@@ -1,15 +1,65 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>Чеки</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [scrollY]="true">
+  <div class="search-container">
+    <ion-searchbar
+      placeholder="Поиск по названию магазина"
+      [debounce]="300"
+      (ionInput)="onSearchChange($event)"
+      [value]="searchTerm"
+      show-clear-button="focus"
+    >
+    </ion-searchbar>
+  </div>
+
   <div class="page-content">
-    <div class="empty-state">
+    <div
+      *ngIf="filteredReceipts.length === 0 && searchTerm.length === 0"
+      class="empty-state"
+    >
       <ion-icon name="receipt-outline" class="empty-icon"></ion-icon>
       <h3>Пока нет чеков</h3>
       <p>Отсканированные чеки будут отображаться здесь</p>
     </div>
+
+    <div
+      *ngIf="filteredReceipts.length === 0 && searchTerm.length > 0"
+      class="empty-search"
+    >
+      <ion-icon name="search-outline" class="empty-icon"></ion-icon>
+      <h3>Ничего не найдено</h3>
+      <p>Попробуйте изменить поисковый запрос</p>
+    </div>
+
+    <ion-list *ngIf="filteredReceipts.length > 0" lines="none">
+      <ion-item *ngFor="let receipt of filteredReceipts" class="receipt-item">
+        <div class="receipt-image-container">
+          <img [src]="receipt.image" alt="Чек" class="receipt-image" />
+        </div>
+        <ion-label class="receipt-info">
+          <h3 class="receipt-title">{{ receipt.title }}</h3>
+          <p class="receipt-sum">{{ receipt.summ | currency }}</p>
+          <p class="receipt-date">{{ receipt.date | dateFormat }}</p>
+        </ion-label>
+        <ion-button
+          fill="clear"
+          slot="end"
+          (click)="presentActionSheet(receipt)"
+          class="menu-button"
+        >
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="fab-container">
+    <ion-fab-button (click)="addNewReceipt()" class="center-fab">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
   </div>
 </ion-content>
